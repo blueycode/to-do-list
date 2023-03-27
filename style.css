@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f9f6f6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f7755d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #fca36f;
+}
+
+body {
+    background-color: #a15d4f;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    background-color: #f9f6f6;
+    width: 20rem;
+    height: 36rem;
+    border-radius: 25px;
+    padding: 1.5rem 0.75rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: 0px 10px 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+#items {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.75rem;
+}
+
+#items textarea {
+    border: none;
+    background-color: #f9f6f6;
+    outline: none;
+    resize: none;
+    height: 2rem;
+    overflow: hidden;
+}
+
+#items > form > div > div {
+    border-bottom: 1px solid #e2dfe0;
+    display: flex;
+    padding: 1rem 0;
+    align-items: center;
+}
+
+#items > form > div > div > span {
+    cursor: pointer;
+}
+
+#items > form > div > div:nth-child(1) {
+    border-top: 1px sold #e2dfe0;
+}
+
+.itm-data {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.itm-data > textarea:nth-child(1) {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.itm-data > textarea:nth-child(2) {
+    color: #7e7e7e;
+    font-size: 0.9rem;
+}
+
+#to-do {
+    width: 100%;
+}
+
+#items > form > h1 {
+    margin: 1.2rem 0 0.8rem 0;
+}
+
+#done {
+    width: 100%;
+}

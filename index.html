@@ -4,11 +4,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="style.css">
     <title>To-do List</title>
 </head>
 <body>
-    
+    <div id="app">
+        <div id="items">
+            <h1>To Do</h1>
+
+            <form id="form">
+                <div id="to-do">
+                    <div>
+                        <div class="itm-data">
+                            <textarea name="n0-title" maxlength="30">Example Item Title</textarea>
+                            <textarea name="n0-desc">Example Item Description</textarea>
+                            <input type="hidden" name="n0-completed">
+                        </div>
+                        <span
+                            class="material-symbols-outlined"
+                            title="Hold to delete this item"
+                        >
+                            check_box_outline_blank
+                        </span>
+                    </div>
+                    <div>
+                        <div class="itm-data">
+                            <textarea name="n0-title" maxlength="30">Example Item Title</textarea>
+                            <textarea name="n0-desc">Example Item Description</textarea>
+                            <input type="hidden" name="n0-completed">
+                        </div>
+                        <span
+                            class="material-symbols-outlined"
+                            title="Hold to delete this item"
+                        >
+                            check_box_outline_blank
+                        </span>
+                    </div>
+                    <div>
+                        <div class="itm-data">
+                            <textarea name="n0-title" maxlength="30">Example Item Title</textarea>
+                            <textarea name="n0-desc">Example Item Description</textarea>
+                            <input type="hidden" name="n0-completed">
+                        </div>
+                        <span
+                            class="material-symbols-outlined"
+                            title="Hold to delete this item"
+                        >
+                            check_box_outline_blank
+                        </span>
+                    </div>
+                    <div>
+                        <div class="itm-data">
+                            <textarea
+                                name="n1-title"
+                                maxlength="30"
+                                placeholder="✨ Create a new note..."
+                            ></textarea>
+                            <textarea
+                                name="n1-desc"
+                                placeholder="Note description"
+                            ></textarea>
+                            <input type="hidden" name="n1-completed">
+                        </div>
+                    </div>
+                </div>
+
+                <h1>Done</h1>
+
+                <div id="done">
+                    <div>
+                        <div class="itm-data">
+                            <textarea name="n2-title" maxlength="30">Example Completed Item Title</textarea>
+                            <textarea name="n2-desc">Example Completed Item Description</textarea>
+                            <input type="hidden" name="n2-completed">
+                        </div>
+                        <span
+                            class="material-symbols-outlined"
+                            title="Hold to delete this item"
+                        >
+                            check_box
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
