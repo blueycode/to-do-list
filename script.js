@@ -2,6 +2,7 @@
 let list = JSON.parse(localStorage.getItem('list'));
 const toDo = document.querySelector("#to-do");
 const done = document.querySelector("#done");
+const form = document.querySelector("#form");
 
 const defaultList = {
     "to_do_list": [
@@ -79,6 +80,9 @@ function getListData() {
         // of the last rendered item
         lastItem = index;
     });
+
+    lastItem ++;
+    createNewItemFields(lastItem);
 }
 
 // Renders items
@@ -132,4 +136,86 @@ function renderToDoItem(itm, index) {
 function autoResize() {
     this.style.height = "1.5rem";
     this.style.height = this.scrollHeight + "px";
+}
+
+// Creates the fields for new items
+function createNewItemFields(index) {
+    const newItmWrapper = document.createElement("div");
+    const newItmData = document.createElement("div");
+    const newTitle = document.createElement("textarea");
+
+    newTitle.name = `n${index}-title`;
+    newTitle.maxLength = 30;
+    newTitle.placeholder = "✨ Create a new note...";
+    newTitle.addEventListener("change", handleItemsSubmit);
+
+    const newDesc = document.createElement("textarea");
+    newDesc.name = `n${index}-desc`;
+    newDesc.style.height = "1.5rem";
+    newDesc.style.height = this.scrollHeight + "px";
+    newDesc.placeholder = "Note description";
+    newDesc.addEventListener("input", autoResize, false);
+    newDesc.addEventListener("change", autoResize, false);
+    newDesc.addEventListener("change", handleItemsSubmit);
+
+    const newCompleted = document.createElement("input");
+    newCompleted.type = "hidden";
+    newCompleted.name = `n${index}-completed`;
+
+    newItmData.classList.add("itm-data");
+    newItmData.appendChild(newTitle);
+    newItmData.appendChild(newDesc);
+    newItmData.appendChild(newCompleted);
+
+    newItmWrapper.appendChild(newItmData);
+    toDo.appendChild(newItmWrapper);
+}
+
+// Handles a new item
+function handleItemsSubmit(e) {
+    const formData = new FormData(form);
+
+    // Creating an empty to-do list
+    const todoObject = {
+        "to_do_list": []
+    }
+
+    const formValues = formData.values();
+
+    for (const itx of formValues) {
+        let title = itx;
+        let description = formValues.next().value;
+        let completed = formValues.next().value;
+
+        if (
+            title.trim() !== "" || 
+            description.trim() !== ""
+        ) {
+            todoObject.to_do_list.push({
+                title,
+                description,
+                completed: completed === 'true'
+            });
+        }
+    }
+
+    let listSizes = [
+        list.to_do_list.length,
+        todoObject.to_do_list.length
+    ];
+
+    list = todoObject;
+    saveItemsStorage();
+
+    // This means that we'll only render
+    // the list again if an items was actually
+    // added
+    if (listSizes[0] < listSizes[1]) {
+        getListData();
+    }
+}
+
+// Saves the current list to the storage
+function saveItemsStorage() {
+    localStorage.setItem("list", JSON.stringify(list));
 }
