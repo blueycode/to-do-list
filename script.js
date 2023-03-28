@@ -81,6 +81,10 @@ function getListData() {
         lastItem = index;
     });
 
+    if (toDo.childElementCount === 0) {
+        renderCompletedImg();
+    }
+
     lastItem ++;
     createNewItemFields(lastItem);
 }
@@ -263,3 +267,21 @@ function checkItem(e) {
         }
     });
 }
+
+// Render a cool image when all items are done
+function renderCompletedImg() {
+    const upToDateImg = document.createElement("img");
+    const upToDateText = document.createElement("h3");
+
+    upToDateImg.src = "/images/upToDate.svg";
+    upToDateImg.classList.add("up-to-date-img");
+
+    upToDateText.innerText =
+        "Nice! You have finished all of your tasks.";
+    upToDateText.classList.add("up-to-date-txt");
+
+    toDo.appendChild(upToDateImg);
+    toDo.appendChild(upToDateText);
+}
+
+// Nice, now, some styling
