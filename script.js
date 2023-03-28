@@ -118,6 +118,8 @@ function renderToDoItem(itm, index) {
     const checkBtn = document.createElement("span");
     checkBtn.classList.add("material-symbols-outlined");
     checkBtn.title = "Hold to delete this item";
+    checkBtn.addEventListener("long-press", removeItem);
+    checkBtn.setAttribute("data-long-press-delay", "100");
     checkBtn.id = index;
 
     wrapper.appendChild(itmData);
@@ -218,4 +220,25 @@ function handleItemsSubmit(e) {
 // Saves the current list to the storage
 function saveItemsStorage() {
     localStorage.setItem("list", JSON.stringify(list));
+}
+
+// Removes an item from the list
+function removeItem(e) {
+    let idToRemove = e.target.id;
+    const filteredList = list.to_do_list.filter((itm, index) => {
+        return index != idToRemove;
+    })
+    list.to_do_list = filteredList;
+
+    anime({
+        targets: e.target.parentElement,
+        duration: 500,
+        translateX: [0, 50],
+        opacity: [1, 0],
+        easing: "easeInExpo",
+        complete: function(anim) {
+            getListData();
+            saveItemsStorage();
+        }
+    });
 }
