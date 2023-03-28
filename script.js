@@ -121,6 +121,7 @@ function renderToDoItem(itm, index) {
     checkBtn.classList.add("material-symbols-outlined");
     checkBtn.title = "Hold to delete this item";
     checkBtn.addEventListener("long-press", removeItem);
+    checkBtn.addEventListener("click", checkItem);
     checkBtn.setAttribute("data-long-press-delay", "100");
     checkBtn.id = index;
 
@@ -245,9 +246,20 @@ function removeItem(e) {
     });
 }
 
-// Before we move further, lets just fix an issue
-// real quick
+// Checks/Unchecks an item
+function checkItem(e) {
+    let isCompleted = list.to_do_list[e.target.id].completed;
+    list.to_do_list[e.target.id].completed = !isCompleted;
 
-// As you can see, the items are not being updated
-// We can simply use the function that we've 
-// created before to take care of this
+    anime({
+        targets: e.target.parentElement,
+        duration: 500,
+        translateX: [0, 50],
+        opacity: [1, 0],
+        easing: "easeInExpo",
+        complete: function(anim) {
+            getListData();
+            saveItemsStorage();
+        }
+    });
+}
