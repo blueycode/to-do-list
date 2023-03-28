@@ -91,6 +91,7 @@ function renderToDoItem(itm, index) {
     title.name = `n${index}-title`;
     title.value = itm.title;
     title.maxLength = 30;
+    title.addEventListener("change", handleItemsSubmit);
     
     const desc = document.createElement("textarea");
     desc.name = `n${index}-desc`;
@@ -99,7 +100,8 @@ function renderToDoItem(itm, index) {
     desc.style.height = this.scrollHeight + "px";
     desc.addEventListener("input", autoResize, false);
     desc.addEventListener("click", autoResize, false);
-    
+    desc.addEventListener("change", handleItemsSubmit);
+
     const completed = document.createElement("input");
     completed.type = "hidden";
     completed.name = `n${index}-completed`;
@@ -242,3 +244,10 @@ function removeItem(e) {
         }
     });
 }
+
+// Before we move further, lets just fix an issue
+// real quick
+
+// As you can see, the items are not being updated
+// We can simply use the function that we've 
+// created before to take care of this
